@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "name": "assistente-saude-inicial",
+    "description": "Modelo inicial para atendimento de saude no Watson Assistant",
+    "language": "pt-br"
+  },
+  "intents": [
+    {
+      "intent": "#saudacao",
+      "examples": ["Oi", "Ola", "Bom dia", "Boa tarde", "Boa noite"]
+    },
+    {
+      "intent": "#despedida",
+      "examples": ["Tchau", "Ate mais", "Obrigado", "Valeu"]
+    },
+    {
+      "intent": "#agendar_consulta",
+      "examples": [
+        "Quero agendar consulta",
+        "Preciso marcar consulta",
+        "Gostaria de agendar atendimento"
+      ]
+    },
+    {
+      "intent": "#dvida_sintoma",
+      "examples": [
+        "Estou com dor de cabeca",
+        "Tenho febre e tosse",
+        "Estou com sintomas de gripe"
+      ]
+    },
+    {
+      "intent": "#horario_atendimento",
+      "examples": [
+        "Qual o horario de atendimento",
+        "Que horas voces atendem",
+        "Vocês abrem aos sabados"
+      ]
+    },
+    {
+      "intent": "#emergencia",
+      "examples": [
+        "Estou com falta de ar",
+        "Dor forte no peito",
+        "Estou em emergencia"
+      ]
+    },
+    {
+      "intent": "#fallback",
+      "examples": [
+        "Nao entendi",
+        "Pode repetir",
+        "Qualquer coisa",
+        "asdf"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "@sintoma",
+      "values": [
+        { "value": "febre", "synonyms": ["febril", "temperatura alta"] },
+        { "value": "tosse", "synonyms": ["tossindo", "tosse seca"] },
+        { "value": "dor de cabeca", "synonyms": ["cefaleia", "enxaqueca"] },
+        { "value": "dor no peito", "synonyms": ["aperto no peito"] },
+        { "value": "falta de ar", "synonyms": ["dificuldade para respirar"] }
+      ]
+    },
+    {
+      "entity": "@periodo",
+      "values": [
+        { "value": "manha", "synonyms": ["manhã"] },
+        { "value": "tarde", "synonyms": [] },
+        { "value": "noite", "synonyms": [] }
+      ]
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "title": "Boas-vindas",
+      "condition": "welcome",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Ola! Sou o assistente inicial de saude. Posso ajudar com agendamento, sintomas e horarios de atendimento."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Saudacao",
+      "condition": "#saudacao",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Ola! Como posso ajudar hoje? Posso orientar sobre sintomas, horarios ou agendamento."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Agendamento",
+      "condition": "#agendar_consulta",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Posso iniciar o agendamento. Qual periodo prefere: manha, tarde ou noite?"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Dvida de Sintoma",
+      "condition": "#dvida_sintoma",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Posso oferecer uma orientacao inicial. Se houver piora dos sintomas, procure atendimento medico. Se for emergencia, ligue 192."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Horario Atendimento",
+      "condition": "#horario_atendimento",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Nosso horario padrao e de segunda a sexta, das 08h as 18h. Aos sabados, das 08h as 12h."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Emergencia",
+      "condition": "#emergencia",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Isso pode ser uma emergencia. Procure atendimento imediato e ligue 192 (SAMU)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Despedida",
+      "condition": "#despedida",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Obrigado pelo contato! Se precisar, estou por aqui."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Fallback",
+      "condition": "anything_else",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "text": "Nao entendi sua mensagem. Posso ajudar com agendamento, sintomas ou horarios."
+          }
+        ]
+      }
+    }
+  ]
+}
