@@ -1,0 +1,45 @@
+# Lock na raiz (gerado se npm rodou fora de frontend/)
+/package-lock.json
+
+# Dependências (nunca versionar)
+frontend/node_modules/
+backend/.venv/
+backend/venv/
+.venv/
+venv/
+**/node_modules/
+
+# Ambiente e segredos
+.env
+backend/.env
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Expo / React Native
+frontend/.expo/
+frontend/dist/
+frontend/web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# IDEs e OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs e caches
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.expo-shared/
